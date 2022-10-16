@@ -1,0 +1,19 @@
+{
+    "name": "curse89/test-bundle",
+    "description": "test",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Curse89\\TestBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "curse89"
+        }
+    ],
+    "require": {
+        "symfony/http-kernel": "^6.0"
+    }
+}

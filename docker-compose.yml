@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        - PHP_VERSION=${PHP_VERSION:-8.1.8}
+      dockerfile: .docker/php/Dockerfile
+    working_dir: /symfony_app
+    user: ${UID:-1000}:${GID:-1000}
+    environment:
+      PHP_IDE_CONFIG: "serverName=DevServer"
+    volumes:
+      - ./:/symfony_app
+      - ./.docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    container_name: bundle_php
+
+  web:
+    image: "nginx:${NGINX_VERSION:-1.21}"
+    depends_on:
+      - app
+    ports:
+      - "8080:80"
+    volumes:
+      - .docker/nginx/:/etc/nginx/conf.d
+    container_name: bundle_nginx
