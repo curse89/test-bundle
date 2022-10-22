@@ -34,8 +34,8 @@ class Curse89TestBundle extends AbstractBundle
 
         $container->services()
             ->get('curse89_test')
-            ->arg('systemId', $config['system']['system_id'])
-            ->arg('systemSecret', $config['system']['system_secret'])
+            ->arg('$systemId', $config['system']['system_id'])
+            ->arg('$systemSecret', $config['system']['system_secret'])
         ;
     }
 }
