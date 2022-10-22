@@ -9,6 +9,10 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 class Curse89TestBundle extends AbstractBundle
 {
+    public function __construct(public int $systemId, public string $systemSecret)
+    {
+    }
+
     public function configure(DefinitionConfigurator $definition): void
     {
         $definition->rootNode()
@@ -28,9 +32,14 @@ class Curse89TestBundle extends AbstractBundle
         // Contrary to the Extension class, the "$config" variable is already merged
         // and processed. You can use it directly to configure the service container.
         $container->services()
-            ->get('curse89.test.client')
-            ->arg(0, $config['system']['system_id'])
-            ->arg(1, $config['system']['system_secret'])
+            ->set('curse89_test', Curse89TestBundle::class)
+            ->autowire()
+            ->alias(Curse89TestBundle::class, 'curse89_test');
+
+        $container->services()
+            ->get('curse89_test')
+            ->arg('systemId', $config['system']['system_id'])
+            ->arg('systemSecret', $config['system']['system_secret'])
         ;
     }
 }
