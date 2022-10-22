@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class Curse89TestBundle
+class Curse89TestBundle extends AbstractBundle
 {
     public function configure(DefinitionConfigurator $definition): void
     {
